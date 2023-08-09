@@ -1,0 +1,23 @@
+<% content_for :showappointments do %>
+<!--<p id="notice"><%= notice %></p>-->
+
+
+
+ 
+
+	<h3> Appointment details </h3>
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @patient.doctors[0].name%>
+</p>
+
+
+
+
+
+<%end%>

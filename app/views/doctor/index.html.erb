@@ -1,0 +1,53 @@
+<% content_for :docindex do %>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 75%;
+  margin: 75px
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+
+tr:nth-child(even) {background-color: lightblue;}
+</style>
+<div class="column middle"> 
+<!--<p id="notice"><%= notice %></p>-->
+
+<h3>Doctor's schedule</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th>Speciality</th>
+       <th>Date</th>
+      <th>Time</th>
+      
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctor.each do |doctor| %>
+      <tr>
+        <td><%= doctor.patients.name %></td>
+         <td><%= doctor.name%></td>
+       <td><%= doctor.speciality%></td>-->
+        <td><%= doctor.patients[0].appdate.strftime("%d/%m/%Y")%></td>
+        <td><%= doctor.patients[0].apptime.strftime("%I:%M %p") %></td>
+        
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>
+<%end%>

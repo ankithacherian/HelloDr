@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HelloDr</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+
+    
+   /* body{
+     background-image: url('stethoscope.png.png');
+    }*/
+    
+    /*body{
+     background-color: skyblue;
+    }*/
+   .column.middle {
+ 
+  width: 1000px;
+  border: 2px solid grey;
+  padding: 50px;
+  margin-left: 150px;
+    margin: 100px 250px 100px;
+} 
+  
+
+     .header {
+          text-align: center;
+         background-color: lightgrey;
+        border-color: skyblue;
+        border-style: groove;
+      padding: 10px;
+       background-image: url('stethoscope1.png') ;
+       background-repeat: no-repeat;
+  background-position: left; 
+      
+          }
+
+
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 1;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #111;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    /* link_to "Log in", new_user_session_path %><br />*/  
+     /*link_to "Sign out", destroy_user_session_path, method: :delete %>*/ 
+     /*link_to "Sign up", new_user_registration_path %><br />*/
+
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    .footer {
+          text-align: center;
+          background-color: grey;
+          color: white;
+          position: fixed;
+          width: 100%;
+          bottom:0;
+          left: 0;
+          right: 0;}
+          h1{text-shadow: 3px 2px skyblue;}
+
+  </style>
+</head>
+  
+
+  <body>
+
+    <div class="header" >
+       <% if current_user %>
+            <h4 style="text-align: right; color: grey ;">Hello <%= current_user.name.capitalize %>!</h4>
+
+           
+            <%end%>
+          
+  <div class="container text-center">
+
+    <h1  >HelloDr</h1>      
+    <p>Meet you doctor today!!!</p>
+  </div>
+</div>
+    
+     
+  
+
+       
+
+
+
+    
+    <%= yield %>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+                           
+      </button>
+     
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      
+<% if current_user %>
+
+
+<ul class="nav navbar-nav navbar-right">
+
+<li class="active"><a data-method="delete" href="/users/sign_out" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+     
+      
+      
+     <% if current_user.admin_role?  %>
+     
+     <li><%= link_to 'Schedule', appointments_path %></li>
+
+     <%else%>
+<li><%= link_to 'My Appointments', patients_path %></li>
+<!-- <li><%= link_to 'My Profile', pages_contact_path %></li>-->
+     <%end%>
+
+       
+      </ul>
+
+
+  <%else%>
+  <ul class="nav navbar-nav">
+  <li><a href="/users/sign_in">Login</a></li>
+    
+<li><a href="/users/sign_up">Sign-up</a></li>
+</ul>
+
+   <%end%>
+  
+    <ul class="nav navbar-nav">
+    <li><%= link_to 'Home', root_path %></li>
+
+<li><%= link_to 'Contact', pages_contact_path %></li>
+ 
+     
+
+        <li><%= link_to 'Make New Appointment', new_patient_path %></li>
+        
+        
+      </ul>
+     
+      
+    </div>
+  </div>
+</nav>
+  
+
+   
+    
+  </div>
+  <div class="column middle"> 
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+  <main role="main">
+    <%= content_for?(:mainpage) ? yield(:mainpage) : yield %>
+    </main>
+<%= content_for?(:contact) ? yield(:contact) : yield %>
+<%= content_for?(:register) ? yield(:register) : yield %>
+<%= content_for?(:login) ? yield(:login) : yield %>
+<%= content_for?(:newpatient) ? yield(:newpatient) : yield %>
+<%= content_for?(:log_out) ? yield(:log_out) : yield %>
+<%= content_for?(:showappointments) ? yield(:showappointments) : yield %>
+<%= content_for?(:myapp) ? yield(:myapp) : yield %>
+<%= content_for?(:editapp) ? yield(:editapp) : yield %>
+<%= content_for?(:appindex) ? yield(:appindex) : yield %>
+</div>
+
+<div class="footer">
+             <h4>New booking through Whatsapp avaialble now!!</h4>
+       </div>
+
+  </body>
+</html>

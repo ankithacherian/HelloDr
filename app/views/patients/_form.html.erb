@@ -1,0 +1,56 @@
+<%= form_with(model: patient, local: true) do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field">
+    <% if current_user %>
+        
+        
+   
+  <%= form.hidden_field :user_id, value: current_user.id%>
+    <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, value: current_user.name %><br>
+  </div>
+    <% end %>
+  </div>
+
+ 
+
+  <div class="field" align:left>
+    <%= form.label :Doctor %>&nbsp;&nbsp;<%= form.collection_select :doctor_id, Doctor.all, :id, :name %><br>
+     <%= form.label :Date %>&nbsp;&nbsp;<%= form.date_select :appdate %><br>
+    <%= form.label :Time  %>&nbsp;&nbsp;<%= form.time_select :apptime %><br>
+
+  </div>
+
+ <!-- <div class="field">
+    <%= form.fields_for :appointments, @patient.appointments.build do |appointments_fields| %>
+    <%= form.label :Date %> <%= appointments_fields.date_select :appt_date %>
+    <%= form.label :Time %> <%= appointments_fields.time_select :time_slot %>
+    <%= form.label :taken %> <%= appointments_fields.hidden_field :taken, value:true %>
+
+
+    <% end %>
+  </div>-->
+
+
+
+
+  
+
+
+
+  <div class="actions" align="left">
+   <%= form.submit :'Book now'%>
+  </div>
+<% end %>

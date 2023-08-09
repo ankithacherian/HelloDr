@@ -1,0 +1,61 @@
+<% content_for :appindex do %>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 75%;
+  margin: 75px
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+
+tr:nth-child(even) {background-color: lightblue;}
+</style>
+
+<!--<p id="notice"><%= notice %></p>-->
+
+<h3>Doctor's Schedule</h3>
+<%=paginate @appointments %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th>Speciality</th>
+       <th>Date</th>
+      <th>Time</th>
+      
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        
+      
+       <td><%= appointment.patient.name %></td>
+       <td><%= appointment.doctor.name%></td>
+       <td><%= appointment.doctor.speciality %></td>
+       <td><%= appointment.patient.appdate.strftime("%d/%m/%Y")%></td>
+        <td><%= appointment.patient.apptime.strftime("%I:%M %p") %></td>
+       
+       <td><%= link_to 'Reschedule', edit_patient_path(appointment.patient.id) %></td>
+        <td><%= link_to 'Cancel', appointment, method: :delete, data: { confirm: 'Do you want to cancel your appointment?' } %></td>
+        
+       
+       
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%end%>

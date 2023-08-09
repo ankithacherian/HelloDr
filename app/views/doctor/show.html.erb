@@ -1,0 +1,18 @@
+<h1>Welcome <%=@doctor.name%></h1>
+
+<p><h3> My Appointments</h3></p>
+<% if @doctor.appointments.nil? %>
+<p> Nothing is scheduled</p>
+
+
+<%else%>
+<ul>
+	<% @doctor.appointments.each do |app| %>
+	     <li>Appointment with <%=app.patient.name %> on <%=app.appt_date %> at <%=app.time_slot%> </li>
+
+	     <%end%>
+
+</ul>
+<%end%>
+
+

@@ -1,0 +1,52 @@
+<% content_for :register do %>
+
+<h3>Sign up</h3>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Age %><br />
+    <%= f.number_field :age %>
+  </div>
+
+    <div class="field">
+    <%= f.label :Date_of_Birth %><br />
+    <%= f.date_select :dateofbirth, :start_year => Date.current.year, :end_year => 1920 %>
+  </div>
+ <div class="field">
+   <%= f.label :Gender %>
+    <%= f.radio_button :gender, 'M' %> M
+    <%= f.radio_button :gender, 'F' %> F
+ </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+  <%end%>
+
+<%= render "devise/shared/links" %>
+
+<%end%>

@@ -1,0 +1,10 @@
+<% content_for :newbooking do %>
+
+
+<h3> New Appointment</h3>
+
+<%= render 'form', appointment: @appointment %>
+
+<%= link_to 'Back', appointments_path %>
+
+<%end%>

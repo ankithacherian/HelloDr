@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor_id: 1
+  time_slot: 2020-09-08 17:56:14
+  appt_date: 2020-09-08
+  patient_id: 1
+  taken: false
+
+two:
+  doctor_id: 1
+  time_slot: 2020-09-08 17:56:14
+  appt_date: 2020-09-08
+  patient_id: 1
+  taken: false
